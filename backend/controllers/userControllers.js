@@ -81,3 +81,25 @@ exports.updateUser = async (req, res) => {
     message: "User updated successfully",
   });
 };
+
+exports.searchUser = async (req, res) => {
+  const filter = req.query.filter || "";
+  const users = await User.find({
+    $or: [
+      { username: { $regex: filter } },
+      { firstname: { $regex: filter } },
+      { lastname: { $regex: filter } },
+    ],
+  });
+
+  res.status(200).json({
+    user: users.map((user) => {
+      return {
+        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        _id: user._id,
+      };
+    }),
+  });
+};
