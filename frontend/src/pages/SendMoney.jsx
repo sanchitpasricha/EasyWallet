@@ -1,3 +1,3 @@
-export function Signin() {
+export function SendMoney() {
   return <div>Send Money</div>;
 }
