@@ -1,9 +1,11 @@
 const { startSession } = require("mongoose");
 const { Account, User } = require("../db");
 
-exports.getBalance = function (req, res) {
-  res.status(200).json({
-    balance: 10000,
+exports.getBalance = async function (req, res) {
+  const user = await User.findOne({ username: req.body.userId });
+  const account = await Account.findOne({ userId: user._id });
+  res.status(200).send({
+    balance: account.balance,
   });
 };
 
@@ -17,7 +19,6 @@ exports.transaction = async function (req, res) {
     session
   );
   const account = await Account.findOne({ userId: user._id }).session(session);
-  console.log(account);
 
   if (!account || account.balance < amount) {
     await session.abortTransaction();
@@ -27,7 +28,6 @@ exports.transaction = async function (req, res) {
   }
 
   const recipient = await User.findOne({ username: to }).session(session);
-  console.log(recipient);
 
   const recipientAccount = await Account.findOne({
     userId: recipient._id,
