@@ -2,13 +2,13 @@ const { z } = require("zod");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const secret = require("../config");
+const { JWT_SECRET } = require("../config");
 
-const User = require("../db");
+const { User, Account } = require("../db");
 const userSchema = z.string().email();
 const passwordSchema = z.string().min(8);
 
-exports.signUp = (req, res) => {
+exports.signUp = async (req, res) => {
   const { username, password, firstname, lastname } = req.body;
   if (
     !userSchema.safeParse(username).success &&
@@ -40,6 +40,10 @@ exports.signUp = (req, res) => {
           error: err,
         });
       });
+    Account.create({
+      userId: newUser._id,
+      balance: 10000,
+    });
   });
 };
 
@@ -62,7 +66,7 @@ exports.signIn = (req, res) => {
           message: "Error while verifying password",
         });
       }
-      const token = jwt.sign({ username }, secret);
+      const token = jwt.sign({ username }, JWT_SECRET);
       res.status(200).json({
         token,
       });
