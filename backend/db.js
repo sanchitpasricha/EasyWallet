@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const { password } = require("./config");
+const DB = process.env.DATABASE_CONNECTION;
 
-mongoose.connect(
-  "mongodb+srv://sanchit:<password>@cluster0.sda1shk.mongodb.net/"
-);
+mongoose.connect(DB);
 
 const userSchema = new Schema({
   username: {

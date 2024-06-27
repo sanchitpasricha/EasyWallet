@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: "./fig.env" });
 const express = require("express");
 const userRoutes = require("./routes/user");
 const app = express();
