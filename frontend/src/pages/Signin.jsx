@@ -9,7 +9,9 @@ export function Signin() {
     <div className="bg-slate-500 h-screen flex justify-center items-center">
       <div className="rounded-lg bg-white text-center p-6">
         <Heading label={"Sign In"} />
-        <Subheading label={"Enter your information to create an account."} />
+        <Subheading
+          label={"Enter your credentials to sign into your account."}
+        />
         <InputBox label={"Email"} placeholder={"johndoe@example.com"} />
         <InputBox label={"Password"} placeholder={"Password"} />
         <div className="pt-4">
