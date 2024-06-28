@@ -20,8 +20,8 @@ This project is a full-stack banking system application built with Node.js and E
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/yourusername/your-repo.git
-   cd your-repo/backend
+   git clone https://github.com/sanchitpasricha/EasyWallet.git
+   cd EasyWallet
    ```
 
 2. **Install dependencies:**
@@ -121,7 +121,10 @@ app.use("/api/v1/protected-route", authMiddleware, (req, res) => {
 - React
 - React Router DOM
 - Axios
+- Recoil
 
 ## Contributing
 
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
+Cretaed using ChatGPT to save time !
