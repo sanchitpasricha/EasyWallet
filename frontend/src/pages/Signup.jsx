@@ -10,7 +10,7 @@ import {
   lastName,
   userEmail,
   userPassword,
-} from "../store/atoms/userAtom";
+} from "../store/atoms/userSignupAtom";
 
 export function Signup() {
   const [firstname, setFirstName] = useRecoilState(firstName);
