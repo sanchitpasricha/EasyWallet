@@ -37,18 +37,20 @@ export function Signin() {
         <div className="pt-4">
           <Button
             label={"Sign In"}
-            onClick={() => {
-              axios
+            onClick={async () => {
+              await axios
                 .post("http://localhost:3000/api/v1/users/signin", {
                   username,
                   password,
                 })
-                .then(() => {
+                .then((response) => {
+                  localStorage.setItem("token", response.data.token);
                   setUsername("");
                   setPassword("");
                 })
                 .catch((err) => {
-                  console.log(err);
+                  console.error(err);
+                  alert("Invalid credentials! Please try again.");
                 });
             }}
           />
