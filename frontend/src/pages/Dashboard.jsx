@@ -6,7 +6,7 @@ export function Dashboard() {
   return (
     <div>
       <AppBar />
-      <div className="px-6 py-4">
+      <div className="px-12 py-4">
         <Balance value={1000} />
         <Users />
       </div>
