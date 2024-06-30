@@ -6,10 +6,13 @@ import { Heading } from "../components/Heading";
 import { Subheading } from "../components/Subheading";
 import { useRecoilState } from "recoil";
 import { userName, userPassword } from "../store/atoms/userSigninAtom";
+import { useNavigate } from "react-router-dom";
 
 export function Signin() {
   const [username, setUsername] = useRecoilState(userName);
   const [password, setPassword] = useRecoilState(userPassword);
+
+  const navigate = useNavigate();
 
   return (
     <div className="bg-slate-500 h-screen flex justify-center items-center">
@@ -45,6 +48,7 @@ export function Signin() {
                 })
                 .then((response) => {
                   localStorage.setItem("token", response.data.token);
+                  navigate("/dashboard");
                   setUsername("");
                   setPassword("");
                 })
