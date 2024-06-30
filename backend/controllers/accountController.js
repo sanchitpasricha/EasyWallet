@@ -27,7 +27,7 @@ exports.transaction = async function (req, res) {
     });
   }
 
-  const recipient = await User.findOne({ username: to }).session(session);
+  const recipient = await User.findOne({ username: to });
 
   const recipientAccount = await Account.findOne({
     userId: recipient._id,
