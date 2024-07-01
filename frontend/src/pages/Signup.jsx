@@ -11,12 +11,15 @@ import {
   userEmail,
   userPassword,
 } from "../store/atoms/userSignupAtom";
+import { useNavigate } from "react-router-dom";
 
 export function Signup() {
   const [firstname, setFirstName] = useRecoilState(firstName);
   const [lastname, setLastName] = useRecoilState(lastName);
   const [username, setEmail] = useRecoilState(userEmail);
   const [password, setPassword] = useRecoilState(userPassword);
+
+  const navigate = useNavigate();
 
   return (
     <div className="bg-slate-500 h-screen flex justify-center items-center">
@@ -72,6 +75,7 @@ export function Signup() {
                   setLastName("");
                   setEmail("");
                   setPassword("");
+                  navigate("/signin");
                 })
                 .catch((error) => {
                   console.error(error);
